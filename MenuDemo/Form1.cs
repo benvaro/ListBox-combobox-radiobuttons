@@ -26,12 +26,12 @@ namespace MenuDemo
 
             if (fontDialog.ShowDialog() == DialogResult.OK)
             {
-                if (richTextBox1.SelectedText.Length > 0)
+                if (richTextBox1.SelectedText.Length > 0) // якщо э виділений текст
                 {
-                    richTextBox1.SelectionFont = fontDialog.Font;
-                    richTextBox1.SelectionColor = fontDialog.Color;
+                    richTextBox1.SelectionFont = fontDialog.Font; // то встановлюємо шрифт виділеного тексту в той, який обрали на FontDialog
+                    richTextBox1.SelectionColor = fontDialog.Color; // і колір аналогічно
                 }
-                else
+                else // якщо не було 
                 {
                     //richTextBox1.SelectAll();
                     richTextBox1.Font = fontDialog.Font;

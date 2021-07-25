@@ -1,0 +1,976 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Around_the_world_for_80_daysModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Cities">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CName" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="CountryID" Type="int" />
+        </EntityType>
+        <EntityType Name="CitiesData">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TourID" Type="int" />
+          <Property Name="CityID" Type="int" />
+        </EntityType>
+        <EntityType Name="Clients">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CName" Type="nvarchar(max)" />
+          <Property Name="CSurName" Type="nvarchar(max)" />
+          <Property Name="Phone" Type="nvarchar" MaxLength="12" />
+          <Property Name="Email" Type="nvarchar" MaxLength="120" />
+          <Property Name="BirthDate" Type="date" />
+        </EntityType>
+        <EntityType Name="ClientTours">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TourID" Type="int" />
+          <Property Name="ClientID" Type="int" />
+          <Property Name="Status" Type="bit" />
+          <Property Name="PayedOrNot" Type="bit" />
+        </EntityType>
+        <EntityType Name="Countrys">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CName" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Employees">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="EName" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="ESurName" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Phone" Type="nvarchar" MaxLength="12" />
+          <Property Name="Email" Type="nvarchar" MaxLength="120" />
+          <Property Name="DateOfReception" Type="date" />
+          <Property Name="CountryID" Type="int" />
+        </EntityType>
+        <EntityType Name="History">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TourID" Type="int" />
+          <Property Name="ClientID" Type="int" />
+        </EntityType>
+        <EntityType Name="Hotels">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="HName" Type="nvarchar(max)" />
+          <Property Name="AboutH" Type="nvarchar(max)" />
+          <Property Name="Photos" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="PlaceToVisit">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PName" Type="nvarchar(max)" />
+          <Property Name="CityID" Type="int" />
+          <Property Name="Photos" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="TourHotels">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TourID" Type="int" />
+          <Property Name="HotelID" Type="int" />
+        </EntityType>
+        <EntityType Name="TourPlaces">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TourID" Type="int" />
+          <Property Name="PlaceID" Type="int" />
+        </EntityType>
+        <EntityType Name="Tours">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TName" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Cost" Type="money" />
+          <Property Name="StartDate" Type="date" />
+          <Property Name="EndDate" Type="date" />
+          <Property Name="EmployeeID" Type="int" />
+          <Property Name="MaxNumberOfPeople" Type="int" />
+          <Property Name="Discount" Type="int" />
+        </EntityType>
+        <EntityType Name="Transport_Tours">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TourID" Type="int" />
+          <Property Name="VehicleID" Type="int" />
+        </EntityType>
+        <EntityType Name="Vehicles">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="VName" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__Cities__CountryI__38996AB5">
+          <End Role="Countrys" Type="Self.Countrys" Multiplicity="0..1" />
+          <End Role="Cities" Type="Self.Cities" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Countrys">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Cities">
+              <PropertyRef Name="CountryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__CitiesDat__CityI__571DF1D5">
+          <End Role="Cities" Type="Self.Cities" Multiplicity="0..1" />
+          <End Role="CitiesData" Type="Self.CitiesData" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cities">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="CitiesData">
+              <PropertyRef Name="CityID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__CitiesDat__TourI__5629CD9C">
+          <End Role="Tours" Type="Self.Tours" Multiplicity="0..1" />
+          <End Role="CitiesData" Type="Self.CitiesData" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tours">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="CitiesData">
+              <PropertyRef Name="TourID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ClientTou__Clien__4D94879B">
+          <End Role="Clients" Type="Self.Clients" Multiplicity="0..1" />
+          <End Role="ClientTours" Type="Self.ClientTours" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Clients">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="ClientTours">
+              <PropertyRef Name="ClientID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ClientTou__TourI__4CA06362">
+          <End Role="Tours" Type="Self.Tours" Multiplicity="0..1" />
+          <End Role="ClientTours" Type="Self.ClientTours" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tours">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="ClientTours">
+              <PropertyRef Name="TourID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Employees__Count__3D5E1FD2">
+          <End Role="Countrys" Type="Self.Countrys" Multiplicity="0..1" />
+          <End Role="Employees" Type="Self.Employees" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Countrys">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Employees">
+              <PropertyRef Name="CountryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__History__ClientI__534D60F1">
+          <End Role="Clients" Type="Self.Clients" Multiplicity="0..1" />
+          <End Role="History" Type="Self.History" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Clients">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="History">
+              <PropertyRef Name="ClientID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__History__TourID__52593CB8">
+          <End Role="Tours" Type="Self.Tours" Multiplicity="0..1" />
+          <End Role="History" Type="Self.History" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tours">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="History">
+              <PropertyRef Name="TourID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__PlaceToVi__CityI__5FB337D6">
+          <End Role="Cities" Type="Self.Cities" Multiplicity="0..1" />
+          <End Role="PlaceToVisit" Type="Self.PlaceToVisit" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cities">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="PlaceToVisit">
+              <PropertyRef Name="CityID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TourHotel__Hotel__5CD6CB2B">
+          <End Role="Hotels" Type="Self.Hotels" Multiplicity="0..1" />
+          <End Role="TourHotels" Type="Self.TourHotels" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Hotels">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="TourHotels">
+              <PropertyRef Name="HotelID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TourHotel__TourI__5BE2A6F2">
+          <End Role="Tours" Type="Self.Tours" Multiplicity="0..1" />
+          <End Role="TourHotels" Type="Self.TourHotels" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tours">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="TourHotels">
+              <PropertyRef Name="TourID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TourPlace__Place__6383C8BA">
+          <End Role="PlaceToVisit" Type="Self.PlaceToVisit" Multiplicity="0..1" />
+          <End Role="TourPlaces" Type="Self.TourPlaces" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PlaceToVisit">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="TourPlaces">
+              <PropertyRef Name="PlaceID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TourPlace__TourI__628FA481">
+          <End Role="Tours" Type="Self.Tours" Multiplicity="0..1" />
+          <End Role="TourPlaces" Type="Self.TourPlaces" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tours">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="TourPlaces">
+              <PropertyRef Name="TourID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Transport__TourI__48CFD27E">
+          <End Role="Tours" Type="Self.Tours" Multiplicity="0..1" />
+          <End Role="Transport_Tours" Type="Self.Transport_Tours" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tours">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Transport_Tours">
+              <PropertyRef Name="TourID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Transport__Vehic__49C3F6B7">
+          <End Role="Vehicles" Type="Self.Vehicles" Multiplicity="0..1" />
+          <End Role="Transport_Tours" Type="Self.Transport_Tours" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Vehicles">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Transport_Tours">
+              <PropertyRef Name="VehicleID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Around_the_world_for_80_daysModelStoreContainer">
+          <EntitySet Name="Cities" EntityType="Self.Cities" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CitiesData" EntityType="Self.CitiesData" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Clients" EntityType="Self.Clients" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ClientTours" EntityType="Self.ClientTours" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Countrys" EntityType="Self.Countrys" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Employees" EntityType="Self.Employees" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="History" EntityType="Self.History" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Hotels" EntityType="Self.Hotels" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PlaceToVisit" EntityType="Self.PlaceToVisit" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TourHotels" EntityType="Self.TourHotels" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TourPlaces" EntityType="Self.TourPlaces" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tours" EntityType="Self.Tours" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Transport_Tours" EntityType="Self.Transport_Tours" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Vehicles" EntityType="Self.Vehicles" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__Cities__CountryI__38996AB5" Association="Self.FK__Cities__CountryI__38996AB5">
+            <End Role="Countrys" EntitySet="Countrys" />
+            <End Role="Cities" EntitySet="Cities" />
+          </AssociationSet>
+          <AssociationSet Name="FK__CitiesDat__CityI__571DF1D5" Association="Self.FK__CitiesDat__CityI__571DF1D5">
+            <End Role="Cities" EntitySet="Cities" />
+            <End Role="CitiesData" EntitySet="CitiesData" />
+          </AssociationSet>
+          <AssociationSet Name="FK__CitiesDat__TourI__5629CD9C" Association="Self.FK__CitiesDat__TourI__5629CD9C">
+            <End Role="Tours" EntitySet="Tours" />
+            <End Role="CitiesData" EntitySet="CitiesData" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ClientTou__Clien__4D94879B" Association="Self.FK__ClientTou__Clien__4D94879B">
+            <End Role="Clients" EntitySet="Clients" />
+            <End Role="ClientTours" EntitySet="ClientTours" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ClientTou__TourI__4CA06362" Association="Self.FK__ClientTou__TourI__4CA06362">
+            <End Role="Tours" EntitySet="Tours" />
+            <End Role="ClientTours" EntitySet="ClientTours" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Employees__Count__3D5E1FD2" Association="Self.FK__Employees__Count__3D5E1FD2">
+            <End Role="Countrys" EntitySet="Countrys" />
+            <End Role="Employees" EntitySet="Employees" />
+          </AssociationSet>
+          <AssociationSet Name="FK__History__ClientI__534D60F1" Association="Self.FK__History__ClientI__534D60F1">
+            <End Role="Clients" EntitySet="Clients" />
+            <End Role="History" EntitySet="History" />
+          </AssociationSet>
+          <AssociationSet Name="FK__History__TourID__52593CB8" Association="Self.FK__History__TourID__52593CB8">
+            <End Role="Tours" EntitySet="Tours" />
+            <End Role="History" EntitySet="History" />
+          </AssociationSet>
+          <AssociationSet Name="FK__PlaceToVi__CityI__5FB337D6" Association="Self.FK__PlaceToVi__CityI__5FB337D6">
+            <End Role="Cities" EntitySet="Cities" />
+            <End Role="PlaceToVisit" EntitySet="PlaceToVisit" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TourHotel__Hotel__5CD6CB2B" Association="Self.FK__TourHotel__Hotel__5CD6CB2B">
+            <End Role="Hotels" EntitySet="Hotels" />
+            <End Role="TourHotels" EntitySet="TourHotels" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TourHotel__TourI__5BE2A6F2" Association="Self.FK__TourHotel__TourI__5BE2A6F2">
+            <End Role="Tours" EntitySet="Tours" />
+            <End Role="TourHotels" EntitySet="TourHotels" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TourPlace__Place__6383C8BA" Association="Self.FK__TourPlace__Place__6383C8BA">
+            <End Role="PlaceToVisit" EntitySet="PlaceToVisit" />
+            <End Role="TourPlaces" EntitySet="TourPlaces" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TourPlace__TourI__628FA481" Association="Self.FK__TourPlace__TourI__628FA481">
+            <End Role="Tours" EntitySet="Tours" />
+            <End Role="TourPlaces" EntitySet="TourPlaces" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Transport__TourI__48CFD27E" Association="Self.FK__Transport__TourI__48CFD27E">
+            <End Role="Tours" EntitySet="Tours" />
+            <End Role="Transport_Tours" EntitySet="Transport_Tours" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Transport__Vehic__49C3F6B7" Association="Self.FK__Transport__Vehic__49C3F6B7">
+            <End Role="Vehicles" EntitySet="Vehicles" />
+            <End Role="Transport_Tours" EntitySet="Transport_Tours" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Around_the_world_for_80_daysModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="City">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CountryID" Type="Int32" />
+          <NavigationProperty Name="Country" Relationship="Self.FK__Cities__CountryI__38996AB5" FromRole="Cities" ToRole="Countrys" />
+          <NavigationProperty Name="CitiesDatas" Relationship="Self.FK__CitiesDat__CityI__571DF1D5" FromRole="Cities" ToRole="CitiesData" />
+          <NavigationProperty Name="PlaceToVisits" Relationship="Self.FK__PlaceToVi__CityI__5FB337D6" FromRole="Cities" ToRole="PlaceToVisit" />
+        </EntityType>
+        <EntityType Name="CitiesData">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TourID" Type="Int32" />
+          <Property Name="CityID" Type="Int32" />
+          <NavigationProperty Name="City" Relationship="Self.FK__CitiesDat__CityI__571DF1D5" FromRole="CitiesData" ToRole="Cities" />
+          <NavigationProperty Name="Tour" Relationship="Self.FK__CitiesDat__TourI__5629CD9C" FromRole="CitiesData" ToRole="Tours" />
+        </EntityType>
+        <EntityType Name="Client">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CSurName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Phone" Type="String" MaxLength="12" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="120" FixedLength="false" Unicode="true" />
+          <Property Name="BirthDate" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="ClientTours" Relationship="Self.FK__ClientTou__Clien__4D94879B" FromRole="Clients" ToRole="ClientTours" />
+          <NavigationProperty Name="Histories" Relationship="Self.FK__History__ClientI__534D60F1" FromRole="Clients" ToRole="History" />
+        </EntityType>
+        <EntityType Name="ClientTour">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TourID" Type="Int32" />
+          <Property Name="ClientID" Type="Int32" />
+          <Property Name="Status" Type="Boolean" />
+          <Property Name="PayedOrNot" Type="Boolean" />
+          <NavigationProperty Name="Client" Relationship="Self.FK__ClientTou__Clien__4D94879B" FromRole="ClientTours" ToRole="Clients" />
+          <NavigationProperty Name="Tour" Relationship="Self.FK__ClientTou__TourI__4CA06362" FromRole="ClientTours" ToRole="Tours" />
+        </EntityType>
+        <EntityType Name="Country">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Cities" Relationship="Self.FK__Cities__CountryI__38996AB5" FromRole="Countrys" ToRole="Cities" />
+          <NavigationProperty Name="Employees" Relationship="Self.FK__Employees__Count__3D5E1FD2" FromRole="Countrys" ToRole="Employees" />
+        </EntityType>
+        <EntityType Name="Employee">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ESurName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Phone" Type="String" MaxLength="12" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="120" FixedLength="false" Unicode="true" />
+          <Property Name="DateOfReception" Type="DateTime" Precision="0" />
+          <Property Name="CountryID" Type="Int32" />
+          <NavigationProperty Name="Country" Relationship="Self.FK__Employees__Count__3D5E1FD2" FromRole="Employees" ToRole="Countrys" />
+        </EntityType>
+        <EntityType Name="History">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TourID" Type="Int32" />
+          <Property Name="ClientID" Type="Int32" />
+          <NavigationProperty Name="Client" Relationship="Self.FK__History__ClientI__534D60F1" FromRole="History" ToRole="Clients" />
+          <NavigationProperty Name="Tour" Relationship="Self.FK__History__TourID__52593CB8" FromRole="History" ToRole="Tours" />
+        </EntityType>
+        <EntityType Name="Hotel">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="HName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="AboutH" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Photos" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="TourHotels" Relationship="Self.FK__TourHotel__Hotel__5CD6CB2B" FromRole="Hotels" ToRole="TourHotels" />
+        </EntityType>
+        <EntityType Name="PlaceToVisit">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CityID" Type="Int32" />
+          <Property Name="Photos" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="City" Relationship="Self.FK__PlaceToVi__CityI__5FB337D6" FromRole="PlaceToVisit" ToRole="Cities" />
+          <NavigationProperty Name="TourPlaces" Relationship="Self.FK__TourPlace__Place__6383C8BA" FromRole="PlaceToVisit" ToRole="TourPlaces" />
+        </EntityType>
+        <EntityType Name="TourHotel">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TourID" Type="Int32" />
+          <Property Name="HotelID" Type="Int32" />
+          <NavigationProperty Name="Hotel" Relationship="Self.FK__TourHotel__Hotel__5CD6CB2B" FromRole="TourHotels" ToRole="Hotels" />
+          <NavigationProperty Name="Tour" Relationship="Self.FK__TourHotel__TourI__5BE2A6F2" FromRole="TourHotels" ToRole="Tours" />
+        </EntityType>
+        <EntityType Name="TourPlace">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TourID" Type="Int32" />
+          <Property Name="PlaceID" Type="Int32" />
+          <NavigationProperty Name="PlaceToVisit" Relationship="Self.FK__TourPlace__Place__6383C8BA" FromRole="TourPlaces" ToRole="PlaceToVisit" />
+          <NavigationProperty Name="Tour" Relationship="Self.FK__TourPlace__TourI__628FA481" FromRole="TourPlaces" ToRole="Tours" />
+        </EntityType>
+        <EntityType Name="Tour">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Cost" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="StartDate" Type="DateTime" Precision="0" />
+          <Property Name="EndDate" Type="DateTime" Precision="0" />
+          <Property Name="EmployeeID" Type="Int32" />
+          <Property Name="MaxNumberOfPeople" Type="Int32" />
+          <Property Name="Discount" Type="Int32" />
+          <NavigationProperty Name="CitiesDatas" Relationship="Self.FK__CitiesDat__TourI__5629CD9C" FromRole="Tours" ToRole="CitiesData" />
+          <NavigationProperty Name="ClientTours" Relationship="Self.FK__ClientTou__TourI__4CA06362" FromRole="Tours" ToRole="ClientTours" />
+          <NavigationProperty Name="Histories" Relationship="Self.FK__History__TourID__52593CB8" FromRole="Tours" ToRole="History" />
+          <NavigationProperty Name="TourHotels" Relationship="Self.FK__TourHotel__TourI__5BE2A6F2" FromRole="Tours" ToRole="TourHotels" />
+          <NavigationProperty Name="TourPlaces" Relationship="Self.FK__TourPlace__TourI__628FA481" FromRole="Tours" ToRole="TourPlaces" />
+          <NavigationProperty Name="Transport_Tours" Relationship="Self.FK__Transport__TourI__48CFD27E" FromRole="Tours" ToRole="Transport_Tours" />
+        </EntityType>
+        <EntityType Name="Transport_Tours">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TourID" Type="Int32" />
+          <Property Name="VehicleID" Type="Int32" />
+          <NavigationProperty Name="Tour" Relationship="Self.FK__Transport__TourI__48CFD27E" FromRole="Transport_Tours" ToRole="Tours" />
+          <NavigationProperty Name="Vehicle" Relationship="Self.FK__Transport__Vehic__49C3F6B7" FromRole="Transport_Tours" ToRole="Vehicles" />
+        </EntityType>
+        <EntityType Name="Vehicle">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="VName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Transport_Tours" Relationship="Self.FK__Transport__Vehic__49C3F6B7" FromRole="Vehicles" ToRole="Transport_Tours" />
+        </EntityType>
+        <Association Name="FK__Cities__CountryI__38996AB5">
+          <End Role="Countrys" Type="Self.Country" Multiplicity="0..1" />
+          <End Role="Cities" Type="Self.City" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Countrys">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Cities">
+              <PropertyRef Name="CountryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__CitiesDat__CityI__571DF1D5">
+          <End Role="Cities" Type="Self.City" Multiplicity="0..1" />
+          <End Role="CitiesData" Type="Self.CitiesData" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cities">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="CitiesData">
+              <PropertyRef Name="CityID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__PlaceToVi__CityI__5FB337D6">
+          <End Role="Cities" Type="Self.City" Multiplicity="0..1" />
+          <End Role="PlaceToVisit" Type="Self.PlaceToVisit" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cities">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="PlaceToVisit">
+              <PropertyRef Name="CityID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__CitiesDat__TourI__5629CD9C">
+          <End Role="Tours" Type="Self.Tour" Multiplicity="0..1" />
+          <End Role="CitiesData" Type="Self.CitiesData" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tours">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="CitiesData">
+              <PropertyRef Name="TourID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ClientTou__Clien__4D94879B">
+          <End Role="Clients" Type="Self.Client" Multiplicity="0..1" />
+          <End Role="ClientTours" Type="Self.ClientTour" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Clients">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="ClientTours">
+              <PropertyRef Name="ClientID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__History__ClientI__534D60F1">
+          <End Role="Clients" Type="Self.Client" Multiplicity="0..1" />
+          <End Role="History" Type="Self.History" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Clients">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="History">
+              <PropertyRef Name="ClientID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ClientTou__TourI__4CA06362">
+          <End Role="Tours" Type="Self.Tour" Multiplicity="0..1" />
+          <End Role="ClientTours" Type="Self.ClientTour" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tours">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="ClientTours">
+              <PropertyRef Name="TourID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Employees__Count__3D5E1FD2">
+          <End Role="Countrys" Type="Self.Country" Multiplicity="0..1" />
+          <End Role="Employees" Type="Self.Employee" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Countrys">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Employees">
+              <PropertyRef Name="CountryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__History__TourID__52593CB8">
+          <End Role="Tours" Type="Self.Tour" Multiplicity="0..1" />
+          <End Role="History" Type="Self.History" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tours">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="History">
+              <PropertyRef Name="TourID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TourHotel__Hotel__5CD6CB2B">
+          <End Role="Hotels" Type="Self.Hotel" Multiplicity="0..1" />
+          <End Role="TourHotels" Type="Self.TourHotel" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Hotels">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="TourHotels">
+              <PropertyRef Name="HotelID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TourPlace__Place__6383C8BA">
+          <End Role="PlaceToVisit" Type="Self.PlaceToVisit" Multiplicity="0..1" />
+          <End Role="TourPlaces" Type="Self.TourPlace" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PlaceToVisit">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="TourPlaces">
+              <PropertyRef Name="PlaceID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TourHotel__TourI__5BE2A6F2">
+          <End Role="Tours" Type="Self.Tour" Multiplicity="0..1" />
+          <End Role="TourHotels" Type="Self.TourHotel" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tours">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="TourHotels">
+              <PropertyRef Name="TourID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TourPlace__TourI__628FA481">
+          <End Role="Tours" Type="Self.Tour" Multiplicity="0..1" />
+          <End Role="TourPlaces" Type="Self.TourPlace" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tours">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="TourPlaces">
+              <PropertyRef Name="TourID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Transport__TourI__48CFD27E">
+          <End Role="Tours" Type="Self.Tour" Multiplicity="0..1" />
+          <End Role="Transport_Tours" Type="Self.Transport_Tours" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tours">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Transport_Tours">
+              <PropertyRef Name="TourID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Transport__Vehic__49C3F6B7">
+          <End Role="Vehicles" Type="Self.Vehicle" Multiplicity="0..1" />
+          <End Role="Transport_Tours" Type="Self.Transport_Tours" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Vehicles">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Transport_Tours">
+              <PropertyRef Name="VehicleID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Around_the_world_for_80_daysEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Cities" EntityType="Self.City" />
+          <EntitySet Name="CitiesDatas" EntityType="Self.CitiesData" />
+          <EntitySet Name="Clients" EntityType="Self.Client" />
+          <EntitySet Name="ClientTours" EntityType="Self.ClientTour" />
+          <EntitySet Name="Countrys" EntityType="Self.Country" />
+          <EntitySet Name="Employees" EntityType="Self.Employee" />
+          <EntitySet Name="Histories" EntityType="Self.History" />
+          <EntitySet Name="Hotels" EntityType="Self.Hotel" />
+          <EntitySet Name="PlaceToVisits" EntityType="Self.PlaceToVisit" />
+          <EntitySet Name="TourHotels" EntityType="Self.TourHotel" />
+          <EntitySet Name="TourPlaces" EntityType="Self.TourPlace" />
+          <EntitySet Name="Tours" EntityType="Self.Tour" />
+          <EntitySet Name="Transport_Tours" EntityType="Self.Transport_Tours" />
+          <EntitySet Name="Vehicles" EntityType="Self.Vehicle" />
+          <AssociationSet Name="FK__Cities__CountryI__38996AB5" Association="Self.FK__Cities__CountryI__38996AB5">
+            <End Role="Countrys" EntitySet="Countrys" />
+            <End Role="Cities" EntitySet="Cities" />
+          </AssociationSet>
+          <AssociationSet Name="FK__CitiesDat__CityI__571DF1D5" Association="Self.FK__CitiesDat__CityI__571DF1D5">
+            <End Role="Cities" EntitySet="Cities" />
+            <End Role="CitiesData" EntitySet="CitiesDatas" />
+          </AssociationSet>
+          <AssociationSet Name="FK__PlaceToVi__CityI__5FB337D6" Association="Self.FK__PlaceToVi__CityI__5FB337D6">
+            <End Role="Cities" EntitySet="Cities" />
+            <End Role="PlaceToVisit" EntitySet="PlaceToVisits" />
+          </AssociationSet>
+          <AssociationSet Name="FK__CitiesDat__TourI__5629CD9C" Association="Self.FK__CitiesDat__TourI__5629CD9C">
+            <End Role="Tours" EntitySet="Tours" />
+            <End Role="CitiesData" EntitySet="CitiesDatas" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ClientTou__Clien__4D94879B" Association="Self.FK__ClientTou__Clien__4D94879B">
+            <End Role="Clients" EntitySet="Clients" />
+            <End Role="ClientTours" EntitySet="ClientTours" />
+          </AssociationSet>
+          <AssociationSet Name="FK__History__ClientI__534D60F1" Association="Self.FK__History__ClientI__534D60F1">
+            <End Role="Clients" EntitySet="Clients" />
+            <End Role="History" EntitySet="Histories" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ClientTou__TourI__4CA06362" Association="Self.FK__ClientTou__TourI__4CA06362">
+            <End Role="Tours" EntitySet="Tours" />
+            <End Role="ClientTours" EntitySet="ClientTours" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Employees__Count__3D5E1FD2" Association="Self.FK__Employees__Count__3D5E1FD2">
+            <End Role="Countrys" EntitySet="Countrys" />
+            <End Role="Employees" EntitySet="Employees" />
+          </AssociationSet>
+          <AssociationSet Name="FK__History__TourID__52593CB8" Association="Self.FK__History__TourID__52593CB8">
+            <End Role="Tours" EntitySet="Tours" />
+            <End Role="History" EntitySet="Histories" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TourHotel__Hotel__5CD6CB2B" Association="Self.FK__TourHotel__Hotel__5CD6CB2B">
+            <End Role="Hotels" EntitySet="Hotels" />
+            <End Role="TourHotels" EntitySet="TourHotels" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TourPlace__Place__6383C8BA" Association="Self.FK__TourPlace__Place__6383C8BA">
+            <End Role="PlaceToVisit" EntitySet="PlaceToVisits" />
+            <End Role="TourPlaces" EntitySet="TourPlaces" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TourHotel__TourI__5BE2A6F2" Association="Self.FK__TourHotel__TourI__5BE2A6F2">
+            <End Role="Tours" EntitySet="Tours" />
+            <End Role="TourHotels" EntitySet="TourHotels" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TourPlace__TourI__628FA481" Association="Self.FK__TourPlace__TourI__628FA481">
+            <End Role="Tours" EntitySet="Tours" />
+            <End Role="TourPlaces" EntitySet="TourPlaces" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Transport__TourI__48CFD27E" Association="Self.FK__Transport__TourI__48CFD27E">
+            <End Role="Tours" EntitySet="Tours" />
+            <End Role="Transport_Tours" EntitySet="Transport_Tours" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Transport__Vehic__49C3F6B7" Association="Self.FK__Transport__Vehic__49C3F6B7">
+            <End Role="Vehicles" EntitySet="Vehicles" />
+            <End Role="Transport_Tours" EntitySet="Transport_Tours" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Around_the_world_for_80_daysModelStoreContainer" CdmEntityContainer="Around_the_world_for_80_daysEntities">
+          <EntitySetMapping Name="Cities">
+            <EntityTypeMapping TypeName="Around_the_world_for_80_daysModel.City">
+              <MappingFragment StoreEntitySet="Cities">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="CName" ColumnName="CName" />
+                <ScalarProperty Name="CountryID" ColumnName="CountryID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CitiesDatas">
+            <EntityTypeMapping TypeName="Around_the_world_for_80_daysModel.CitiesData">
+              <MappingFragment StoreEntitySet="CitiesData">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="TourID" ColumnName="TourID" />
+                <ScalarProperty Name="CityID" ColumnName="CityID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Clients">
+            <EntityTypeMapping TypeName="Around_the_world_for_80_daysModel.Client">
+              <MappingFragment StoreEntitySet="Clients">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="CName" ColumnName="CName" />
+                <ScalarProperty Name="CSurName" ColumnName="CSurName" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="BirthDate" ColumnName="BirthDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ClientTours">
+            <EntityTypeMapping TypeName="Around_the_world_for_80_daysModel.ClientTour">
+              <MappingFragment StoreEntitySet="ClientTours">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="TourID" ColumnName="TourID" />
+                <ScalarProperty Name="ClientID" ColumnName="ClientID" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="PayedOrNot" ColumnName="PayedOrNot" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Countrys">
+            <EntityTypeMapping TypeName="Around_the_world_for_80_daysModel.Country">
+              <MappingFragment StoreEntitySet="Countrys">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="CName" ColumnName="CName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Employees">
+            <EntityTypeMapping TypeName="Around_the_world_for_80_daysModel.Employee">
+              <MappingFragment StoreEntitySet="Employees">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="EName" ColumnName="EName" />
+                <ScalarProperty Name="ESurName" ColumnName="ESurName" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="DateOfReception" ColumnName="DateOfReception" />
+                <ScalarProperty Name="CountryID" ColumnName="CountryID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Histories">
+            <EntityTypeMapping TypeName="Around_the_world_for_80_daysModel.History">
+              <MappingFragment StoreEntitySet="History">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="TourID" ColumnName="TourID" />
+                <ScalarProperty Name="ClientID" ColumnName="ClientID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Hotels">
+            <EntityTypeMapping TypeName="Around_the_world_for_80_daysModel.Hotel">
+              <MappingFragment StoreEntitySet="Hotels">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="HName" ColumnName="HName" />
+                <ScalarProperty Name="AboutH" ColumnName="AboutH" />
+                <ScalarProperty Name="Photos" ColumnName="Photos" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PlaceToVisits">
+            <EntityTypeMapping TypeName="Around_the_world_for_80_daysModel.PlaceToVisit">
+              <MappingFragment StoreEntitySet="PlaceToVisit">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="PName" ColumnName="PName" />
+                <ScalarProperty Name="CityID" ColumnName="CityID" />
+                <ScalarProperty Name="Photos" ColumnName="Photos" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TourHotels">
+            <EntityTypeMapping TypeName="Around_the_world_for_80_daysModel.TourHotel">
+              <MappingFragment StoreEntitySet="TourHotels">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="TourID" ColumnName="TourID" />
+                <ScalarProperty Name="HotelID" ColumnName="HotelID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TourPlaces">
+            <EntityTypeMapping TypeName="Around_the_world_for_80_daysModel.TourPlace">
+              <MappingFragment StoreEntitySet="TourPlaces">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="TourID" ColumnName="TourID" />
+                <ScalarProperty Name="PlaceID" ColumnName="PlaceID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tours">
+            <EntityTypeMapping TypeName="Around_the_world_for_80_daysModel.Tour">
+              <MappingFragment StoreEntitySet="Tours">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="TName" ColumnName="TName" />
+                <ScalarProperty Name="Cost" ColumnName="Cost" />
+                <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+                <ScalarProperty Name="EndDate" ColumnName="EndDate" />
+                <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
+                <ScalarProperty Name="MaxNumberOfPeople" ColumnName="MaxNumberOfPeople" />
+                <ScalarProperty Name="Discount" ColumnName="Discount" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Transport_Tours">
+            <EntityTypeMapping TypeName="Around_the_world_for_80_daysModel.Transport_Tours">
+              <MappingFragment StoreEntitySet="Transport_Tours">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="TourID" ColumnName="TourID" />
+                <ScalarProperty Name="VehicleID" ColumnName="VehicleID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Vehicles">
+            <EntityTypeMapping TypeName="Around_the_world_for_80_daysModel.Vehicle">
+              <MappingFragment StoreEntitySet="Vehicles">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="VName" ColumnName="VName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

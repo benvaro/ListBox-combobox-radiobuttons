@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="3d5cd4f15aa14571910bd18400cd64aa" Name="Diagram1">
+        <EntityTypeShape EntityType="Around_the_world_for_80_daysModel.City" Width="1.5" PointX="1.5" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Around_the_world_for_80_daysModel.CitiesData" Width="1.5" PointX="3" PointY="8.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="Around_the_world_for_80_daysModel.Client" Width="1.5" PointX="0.5" PointY="3.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Around_the_world_for_80_daysModel.ClientTour" Width="1.5" PointX="5.5" PointY="3.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Around_the_world_for_80_daysModel.Country" Width="1.5" PointX="1.5" PointY="15.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="Around_the_world_for_80_daysModel.Employee" Width="1.5" PointX="3.75" PointY="20.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="Around_the_world_for_80_daysModel.History" Width="1.5" PointX="3" PointY="11.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="Around_the_world_for_80_daysModel.Hotel" Width="1.5" PointX="3.75" PointY="14.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="Around_the_world_for_80_daysModel.PlaceToVisit" Width="1.5" PointX="3.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Around_the_world_for_80_daysModel.TourHotel" Width="1.5" PointX="6" PointY="8.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="Around_the_world_for_80_daysModel.TourPlace" Width="1.5" PointX="6.875" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Around_the_world_for_80_daysModel.Tour" Width="1.5" PointX="0.75" PointY="8" IsExpanded="true" />
+        <EntityTypeShape EntityType="Around_the_world_for_80_daysModel.Transport_Tours" Width="1.5" PointX="6" PointY="11.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="Around_the_world_for_80_daysModel.Vehicle" Width="1.5" PointX="3.75" PointY="18" IsExpanded="true" />
+        <AssociationConnector Association="Around_the_world_for_80_daysModel.FK__Cities__CountryI__38996AB5" ManuallyRouted="false" />
+        <AssociationConnector Association="Around_the_world_for_80_daysModel.FK__CitiesDat__CityI__571DF1D5" ManuallyRouted="false" />
+        <AssociationConnector Association="Around_the_world_for_80_daysModel.FK__PlaceToVi__CityI__5FB337D6" ManuallyRouted="false" />
+        <AssociationConnector Association="Around_the_world_for_80_daysModel.FK__CitiesDat__TourI__5629CD9C" ManuallyRouted="false" />
+        <AssociationConnector Association="Around_the_world_for_80_daysModel.FK__ClientTou__Clien__4D94879B" ManuallyRouted="false" />
+        <AssociationConnector Association="Around_the_world_for_80_daysModel.FK__History__ClientI__534D60F1" ManuallyRouted="false" />
+        <AssociationConnector Association="Around_the_world_for_80_daysModel.FK__ClientTou__TourI__4CA06362" ManuallyRouted="false" />
+        <AssociationConnector Association="Around_the_world_for_80_daysModel.FK__Employees__Count__3D5E1FD2" ManuallyRouted="false" />
+        <AssociationConnector Association="Around_the_world_for_80_daysModel.FK__History__TourID__52593CB8" ManuallyRouted="false" />
+        <AssociationConnector Association="Around_the_world_for_80_daysModel.FK__TourHotel__Hotel__5CD6CB2B" ManuallyRouted="false" />
+        <AssociationConnector Association="Around_the_world_for_80_daysModel.FK__TourPlace__Place__6383C8BA" ManuallyRouted="false" />
+        <AssociationConnector Association="Around_the_world_for_80_daysModel.FK__TourHotel__TourI__5BE2A6F2" ManuallyRouted="false" />
+        <AssociationConnector Association="Around_the_world_for_80_daysModel.FK__TourPlace__TourI__628FA481" ManuallyRouted="false" />
+        <AssociationConnector Association="Around_the_world_for_80_daysModel.FK__Transport__TourI__48CFD27E" ManuallyRouted="false" />
+        <AssociationConnector Association="Around_the_world_for_80_daysModel.FK__Transport__Vehic__49C3F6B7" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
